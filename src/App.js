@@ -1,15 +1,19 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import React,{useState} from 'react';
+import {Text,View,Button} from 'react-native';
 import {styles} from './App.styles'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Hello vsp!</Text>
-      <StatusBar style="auto" />
-    </View>
+export default function App(){
+  const [isOn,setIsOn] = useState(false);
+
+  return(
+  <View style={styles.container}>
+    <Text>
+      Light is {isOn ? 'on' : 'off'}
+    </Text>
+
+    <Button title={isOn ?'Turn off' : 'Turn on'} onPress={() => setIsOn(!isOn)}/>
+
+  </View>
   );
 }
-
 
