@@ -1,19 +1,30 @@
 import React,{useState} from 'react';
-import {Text,View,Button} from 'react-native';
-import {styles} from './App.styles'
+import { View, Text, TextInput, Button} from 'react-native';
+import { styles} from './App.styles';
 
 export default function App(){
-  const [isOn,setIsOn] = useState(false);
+  const [name, setName] = useState('');
 
-  return(
-  <View style={styles.container}>
-    <Text>
-      Light is {isOn ? 'on' : 'off'}
-    </Text>
+  const [submittedText, setSubmittedText] = useState('Guest');
 
-    <Button title={isOn ?'Turn off' : 'Turn on'} onPress={() => setIsOn(!isOn)}/>
+  const handleUpdate = () => {
+    if(name.trim() !==''){
+      setSubmittedText(name);
+      setName('');
+    }
+  }
 
-  </View>
+  return (
+    <View style={styles.Container}>
+      <Text style={styles.title}>Hello {submittedText}!</Text>
+      <TextInput 
+      style={styles.input}
+      placeholder="Enter your name."
+      value={name}
+      onChangeText={(text) => setName(text)}
+      />
+
+      <Button title="Update Name" onPress={handleUpdate}/>
+    </View>
   );
 }
-
