@@ -1,30 +1,43 @@
 import React,{useState} from 'react';
-import { View, Text, TextInput, Button} from 'react-native';
-import { styles} from './App.styles';
+import {View,Text,Button,TextInput,FlatList} from 'react-native';
+import {styles} from './App.styles';
 
 export default function App(){
-  const [name, setName] = useState('');
 
-  const [submittedText, setSubmittedText] = useState('Guest');
+  const [text,setText] = useState('');
 
-  const handleUpdate = () => {
-    if(name.trim() !==''){
-      setSubmittedText(name);
-      setName('');
+  const [items,setItems] = useState([]);
+
+  const handleItem = ()=>{
+    if(text.trim() !==''){
+      setItems([...items,{id: Date.now().toString(), name:text}])
+      setText('');
     }
-  }
+  };
 
   return (
     <View style={styles.Container}>
-      <Text style={styles.title}>Hello {submittedText}!</Text>
-      <TextInput 
-      style={styles.input}
-      placeholder="Enter your name."
-      value={name}
-      onChangeText={(text) => setName(text)}
-      />
+      <Text style={styles.title}>Guest List</Text>
 
-      <Button title="Update Name" onPress={handleUpdate}/>
+      <View style={styles.inputRow}>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter guest name"
+          value={text}
+          onChangeText={(val) => setText(val)}
+        />
+        <Button title="Add" onPress={handleItem}/>
+      </View>
+
+      <FlatList
+        data={items}
+        keyExtractor={(item) => item.id}
+        renderItem={({item}) => (
+          <View style={styles.listItem}>
+            <Text style={styles.listText}>{item.name}</Text>
+          </View>
+        )}
+      /> 
     </View>
-  );
+  )
 }
