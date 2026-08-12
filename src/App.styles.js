@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   Container: {
     flex: 1,
     backgroundColor: 'white',
-    alignItems: 'center',
+    //alignItems: 'center',
     justifyContent: 'center',
     padding: 20
   },
@@ -39,5 +39,10 @@ export const styles = StyleSheet.create({
   },
   listText: {
     fontSize: 16,
+  },
+  deleteText: {
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize: 16,     
   }
 });
