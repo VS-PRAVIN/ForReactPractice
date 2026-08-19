@@ -8,4 +8,11 @@ export const styles = StyleSheet.create({
     // justifyContent: 'center',
     paddingTop: 50,
   },
+  statusText: {
+  textAlign: 'center',
+  fontSize: 16,
+  fontWeight: 'bold',
+  color: '#555',
+  marginVertical: 10,
+}
 });
